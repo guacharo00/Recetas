@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{ useState } from 'react';
+import AddCategories from './components/AddCategories';
 
-function App() {
+import './App.css';
+import { RecipeGrid } from './components/RecipeGrid';
+
+const App = () => {
+
+  const [categories, setCategories] = useState(['featured']);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="head-wrap">
+        <h2 className="sub-title">App de recetas</h2>
       </header>
-    </div>
+        <AddCategories setCategories={ setCategories }/>
+        {
+          categories.map( recipe => 
+
+            <RecipeGrid
+              key={recipe}
+              category={recipe}
+            />
+
+          )
+        }
+    </div>  
   );
 }
 
